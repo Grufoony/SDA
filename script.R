@@ -64,7 +64,7 @@ t.test(oceania, asia)
 head(df)
 filter <- df[df$Country == "France", ]
 
-result <- lm(Yearly.Change ~Population + Migrants.net.
+result <- lm(Yearly.Change ~ Population + Migrants.net.
     + FertilityRate + MedianAge + UrbanPopulation, data = filter)
 summary(result)
 
