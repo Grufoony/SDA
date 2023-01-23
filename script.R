@@ -15,9 +15,13 @@ usa <- df[df$Country == "United States", ]
 model <- lm(Population ~ Year, data = usa)
 summary(model)
 
+# Pearson's product-moment correlation
+cor.test(usa$Population, usa$Year)
+
 ggplot(data = usa, aes(x = Year, y = Population)) +
     geom_point() + geom_smooth(method = "lm") +
     labs(title = "U.S.A. Population", x = "Year", y = "Population")
+ggsave("./img/usa.png")
 
 # PAKISTAN ANALYSIS
 # Pakistan has an exponential growth -> log scale to fit a linear model
@@ -27,13 +31,18 @@ pak[, "log_Population"] <- log(pak[, "Population"] + 1)
 
 model <- lm(log_Population ~ Year, data = pak)
 summary(model)
+# Pearson's product-moment correlation
+cor.test(pak$Population, pak$Year)
+cor.test(pak$log_Population, pak$Year)
 
 ggplot(data = pak, aes(x = Year, y = Population)) +
     geom_point() + geom_smooth(method = "lm") +
     labs(title = "Pakistan population", x = "Year", y = "Population")
+ggsave("./img/pak.png")
 ggplot(data = pak, aes(x = Year, y = log_Population)) +
     geom_point() + geom_smooth(method = "lm") +
     labs(title = "Pakistan Population", x = "Year", y = "Population logarithm")
+ggsave("./img/pak_log.png")
 
 ###############################################################################
 # POPULATION GROWTH BETWEEN CONTINENTS==== HYPOTHESIS TESTING
@@ -51,6 +60,7 @@ ggplot() +
 qqnorm(oceania, main = "Normal qq-plot (Oceania)",
     ylab = "Empirical Quantiles", xlab = "Theoretical Quantiles")
 qqline(oceania, col = "red", lty = 4, lwd = 2)
+ggsave("./img/qqnorm_oceania.png")
 qqnorm(asia, main = "Normal qq-plot (Population 2)",
     ylab = "Empirical Quantiles", xlab = "Theoretical Quantiles")
 qqline(asia, col = "red", lty = 4, lwd = 2)
@@ -87,4 +97,3 @@ ggplot(data = filter, aes(x = Migrants.net., y = MedianAge)) + geom_point() + ge
 ggplot(data = filter, aes(x = Migrants.net., y = UrbanPopulation)) + geom_point() + geom_smooth(method = "lm")
 
 ggplot(data = filter, aes(x = MedianAge, y = exp_FertilityRate)) + geom_point() + geom_smooth(method = "lm")
-
