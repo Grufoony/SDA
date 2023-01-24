@@ -170,64 +170,75 @@
 
 \begin{frame}
 	\frametitle{Dataset}
+	\begin{figure}
+		\includegraphics[width=.69\textwidth]{df.png}
+	\end{figure}
+	\url{https://www.kaggle.com/datasets/nguyenthicamlai/population-2022}
+\end{frame}
 
+\begin{frame}
+	\frametitle{Dataset}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Population growth in the U.S.A.}
-	\begin{columns}[c]
-		\begin{column}{0.6\textwidth}
-			\begin{figure}
-				\includegraphics[width=\textwidth]{usa.png}
-			\end{figure}
-		\end{column}
-		\begin{column}{0.4\textwidth}
-			Pearson's correlation test:
-			\begin{itemize}
-				\item $\text{p-value} < 2.2 \times 10^{-16}$
-				\item $\rho = 0.999$
-				\item c.i. $\left[0.997, 0.999\right]$
-			\end{itemize}
-		\end{column}
-	\end{columns}
+	\begin{figure}
+		\includegraphics[width=.69\textwidth]{usa.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Population growth in the U.S.A.}
+	\begin{block}{Fit results}
+		\begin{itemize}
+			\item $\text{slope} = \left(2.465 \pm 0.030\right) \times 10^6 \ ab/y$ \\
+				$p_s < 2 \times 10^{-16}$
+			\item $\text{intercept} = \left(-4.648 \pm 0.060\right) \times 10^9 \ ab$ \\
+				$p_i < 2 \times 10^{-16}$
+			\item $R^2 = 0.997$
+		\end{itemize}
+	\end{block}
+	\begin{block}{Pearson's correlation test}
+		\begin{itemize}
+			\item $\text{p-value} < 2.2 \times 10^{-16}$
+			\item $\rho = 0.999$
+			\item c.i. ($95\%$) $\left[0.997, 0.999\right]$
+		\end{itemize}
+	\end{block}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Population growth in Pakistan}
-	\begin{columns}[c]
-		\begin{column}{0.6\textwidth}
-			\begin{figure}
-				\includegraphics[width=\textwidth]{pak.png}
-			\end{figure}
-		\end{column}
-		\begin{column}{0.4\textwidth}
-			Pearson's correlation test:
-			\begin{itemize}
-				\item $\text{p-value} = 3.9 \times 10^{-14}$
-				\item $\rho = 0.987$
-				\item c.i. $\left[0.965, 0.995\right]$
-			\end{itemize}
-		\end{column}
-	\end{columns}
+	\begin{figure}
+		\includegraphics[width=.69\textwidth]{pak.png}
+	\end{figure}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Population growth in Pakistan - log transformation}
-	\begin{columns}[c]
-		\begin{column}{0.6\textwidth}
-			\begin{figure}
-				\includegraphics[width=\textwidth]{pak_log.png}
-			\end{figure}
-		\end{column}
-		\begin{column}{0.4\textwidth}
-			Pearson's correlation test:
-			\begin{itemize}
-				\item $\text{p-value} < 2.2 \times 10^{-16}$
-				\item $\rho = 0.998$
-				\item c.i. $\left[0.996, 0.999\right]$
-			\end{itemize}
-		\end{column}
-	\end{columns}
+	\frametitle{Population growth in Pakistan - log correction}
+	\begin{figure}
+		\includegraphics[width=.75\textwidth]{pak_log.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Population growth in Pakistan - log correction}
+	\begin{block}{Fit results}
+		\begin{itemize}
+			\item $\text{slope} = \left(2.685 \pm 0.037\right) \times 10^{-2} \ ab/y$ \\
+				$p_s < 2 \times 10^{-16}$
+			\item $\text{intercept} = \left(-3.498 \pm 0.073\right) \times 10 \ ab$ \\
+				$p_i < 2 \times 10^{-16}$
+			\item $R^2 = 0.997$
+		\end{itemize}
+	\end{block}
+	\begin{block}{Pearson's correlation test}
+		\begin{itemize}
+			\item $\text{p-value} < 2.2 \times 10^{-16}$
+			\item $\rho = 0.998$
+			\item c.i. $\left[0.996, 0.999\right]$ at $95\%$
+		\end{itemize}
+	\end{block}
 \end{frame}
 
 % \section{Text Examples} % Sections are added in order to organize your presentation into discrete blocks, all sections and subsections are automatically output to the table of contents as an overview of the talk but NOT output in the presentation as separate slides
@@ -304,29 +315,6 @@
 
 % %------------------------------------------------
 
-% \subsection{Columns}
-
-% \begin{frame}
-% 	\frametitle{Multiple Columns}
-% 	\framesubtitle{Subtitle} % Optional subtitle
-	
-% 	\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
-% 		\begin{column}{0.45\textwidth} % Left column width
-% 			\textbf{Heading}
-% 			\begin{enumerate}
-% 				\item Statement
-% 				\item Explanation
-% 				\item Example
-% 			\end{enumerate}
-% 		\end{column}
-% 		\begin{column}{0.5\textwidth} % Right column width
-% 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ultricies in feugiat rutrum, porttitor sit amet augue. Aliquam ut tortor mauris. Sed volutpat ante purus, quis accumsan dolor.
-% 		\end{column}
-% 	\end{columns}
-% \end{frame}
-
-% %------------------------------------------------
-
 % \section{Table and Figure Examples}
 
 % \subsection{Table}
@@ -347,19 +335,6 @@
 % 		\end{tabular}
 % 		\caption{Table caption}
 % 	\end{table}
-% \end{frame}
-
-% %------------------------------------------------
-
-% \subsection{Figure}
-
-% \begin{frame}
-% 	\frametitle{Figure}
-	
-% 	\begin{figure}
-% 		\includegraphics[width=0.8\linewidth]{creodocs_logo.pdf}
-% 		\caption{Creodocs logo.}
-% 	\end{figure}
 % \end{frame}
 
 % %------------------------------------------------
