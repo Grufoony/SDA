@@ -1,6 +1,7 @@
 # DATAFRAME INITIALIZATION
 df <- read.csv("./data/population.csv")
 library(ggplot2)
+library(dplyr)
 
 head(df)
 unique(df$Continent)
@@ -20,7 +21,7 @@ cor.test(usa$Population, usa$Year)
 
 ggplot(data = usa, aes(x = Year, y = Population)) +
     geom_point() + geom_smooth(method = "lm") +
-    labs(title = "U.S.A. Population", x = "Year", y = "Population")
+    labs(x = "Time (y)", y = "Population (ab)")
 ggsave("./img/usa.png")
 
 # PAKISTAN ANALYSIS
@@ -37,45 +38,57 @@ cor.test(pak$log_Population, pak$Year)
 
 ggplot(data = pak, aes(x = Year, y = Population)) +
     geom_point() + geom_smooth(method = "lm") +
-    labs(title = "Pakistan population", x = "Year", y = "Population")
+    labs(x = "Time (y)", y = "Population (ab)")
 ggsave("./img/pak.png")
 ggplot(data = pak, aes(x = Year, y = log_Population)) +
     geom_point() + geom_smooth(method = "lm") +
-    labs(title = "Pakistan Population", x = "Year", y = "Population logarithm")
+    labs(x = "Time (y)", y = "log(Population) (a.u.)")
 ggsave("./img/pak_log.png")
 
 ###############################################################################
 # POPULATION GROWTH BETWEEN CONTINENTS==== HYPOTHESIS TESTING
 ###############################################################################
 
-unique(df$Continent)
+# H0: the two populations have the same mean
 
-oceania <- log(df[df$Continent == "Oceania", "Population"])
-aisa <- log(df[df$Continent == "Asia", "Population"])
+asia <- df[df$Continent == "Asia", ]
+asia <- asia %>% group_by(Year) %>% summarise(sum = sum(Population))
+asia[, "sum"] <- log(asia[, "sum"] + 1)
+
+oceania <- df[df$Continent == "Oceania", ]
+oceania <- oceania %>% group_by(Year) %>% summarise(sum = sum(Population))
+oceania[, "sum"] <- log(oceania[, "sum"] + 1)
+
+ggplot(data = oceania, aes(x = Year, y = sum)) +
+    geom_point() +
+    geom_point(data = asia, color = "red") +
+    labs(x = "Time (y)", y = "log(Population) (a.u.)")
+ggsave("./img/asia_oceania.png")
 
 ggplot() +
-    geom_histogram(aes(x = oceania), fill = "red", alpha = 0.5, bins = 20) +
-    geom_histogram(aes(x = asia), fill = "blue", alpha = 0.5, bins = 20)
+    geom_histogram(aes(x = oceania$sum), fill = "red", alpha = 0.5, bins = 15) +
+    geom_histogram(aes(x = asia$sum), fill = "blue", alpha = 0.5, bins = 15) +
+    labs(x = "log(Population)", y = "Frequency")
+ggsave("./img/asia_oceania_hist.png")
 
-qqnorm(oceania, main = "Normal qq-plot (Oceania)",
+qqnorm(asia$sum, main = "Normal qq-plot (Asia)",
     ylab = "Empirical Quantiles", xlab = "Theoretical Quantiles")
-qqline(oceania, col = "red", lty = 4, lwd = 2)
-ggsave("./img/qqnorm_oceania.png")
-qqnorm(asia, main = "Normal qq-plot (Population 2)",
-    ylab = "Empirical Quantiles", xlab = "Theoretical Quantiles")
-qqline(asia, col = "red", lty = 4, lwd = 2)
+qqline(asia$sum, col = "red", lty = 4, lwd = 2)
 
-t.test(oceania, asia)
+qqnorm(oceania$sum, main = "Normal qq-plot (Oceania)",
+    ylab = "Empirical Quantiles", xlab = "Theoretical Quantiles")
+qqline(oceania$sum, col = "red", lty = 4, lwd = 2)
+
+t.test(asia, oceania)
 
 ###############################################################################
 # YEARLY CHANGE ==== MULTILINEAR REGRESSION
 ###############################################################################
 
-head(df)
-filter <- df[df$Country == "France", ]
+france <- df[df$Country == "France", ]
 
-result <- lm(Yearly.Change ~ Population + Migrants.net.
-    + FertilityRate + MedianAge + UrbanPopulation, data = filter)
+result <- lm(data = france, Yearly.Change ~ Population + Migrants.net.
+    + FertilityRate + MedianAge + UrbanPopulation)
 summary(result)
 
 
