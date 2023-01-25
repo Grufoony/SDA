@@ -1,10 +1,10 @@
+###############################################################################
 # DATAFRAME INITIALIZATION
+###############################################################################
+
 df <- read.csv("./data/population.csv")
 library(ggplot2)
 library(dplyr)
-
-head(df)
-unique(df$Continent)
 
 ###############################################################################
 # POPULATION GROWTH ANALISYS ==== LINEAR REGRESSION
@@ -66,8 +66,8 @@ ggplot(data = oceania, aes(x = Year, y = sum)) +
 ggsave("./img/asia_oceania.png")
 
 ggplot() +
-    geom_histogram(aes(x = oceania$sum), fill = "red", alpha = 0.5, bins = 15) +
-    geom_histogram(aes(x = asia$sum), fill = "blue", alpha = 0.5, bins = 15) +
+    geom_histogram(aes(x = oceania$sum), fill = "blue", alpha = 0.5, bins = 15) + # nolint: line_length_linter.
+    geom_histogram(aes(x = asia$sum), fill = "red", alpha = 0.5, bins = 15) +
     labs(x = "log(Population)", y = "Frequency")
 ggsave("./img/asia_oceania_hist.png")
 
@@ -79,7 +79,7 @@ qqnorm(oceania$sum, main = "Normal qq-plot (Oceania)",
     ylab = "Empirical Quantiles", xlab = "Theoretical Quantiles")
 qqline(oceania$sum, col = "red", lty = 4, lwd = 2)
 
-t.test(asia, oceania)
+t.test(asia$sum, oceania$sum)
 
 ###############################################################################
 # YEARLY CHANGE ==== MULTILINEAR REGRESSION
