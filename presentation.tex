@@ -142,7 +142,7 @@
 %	PRESENTATION INFORMATION
 %----------------------------------------------------------------------------------------
 
-\title[Short Title]{Study of population growth} % The short title in the optional parameter appears at the bottom of every slide, the full title in the main parameter is only on the title page
+\title[Study of world population growth]{Study of world population growth} % The short title in the optional parameter appears at the bottom of every slide, the full title in the main parameter is only on the title page
 
 % \subtitle{Optional Subtitle} % Presentation subtitle, remove this command if a subtitle isn't required
 
@@ -173,7 +173,6 @@
 	\begin{figure}
 		\includegraphics[width=.69\textwidth]{df.png}
 	\end{figure}
-	\url{https://www.kaggle.com/datasets/nguyenthicamlai/population-2022}
 \end{frame}
 
 \begin{frame}
@@ -271,13 +270,38 @@
 		\includegraphics[width=.45\textwidth]{qqnorm_asia.png}
 		\includegraphics[width=.45\textwidth]{qqnorm_oceania.png}
 	\end{figure}
+	\begin{exampleblock}{Welch Two Sample t-test}
+		\begin{itemize}
+			\item $\mu_{asia} = 21.9 \ \left(\text{a.u.}\right)$
+			\item $\mu_{oceania} = 17.2 \ \left(\text{a.u.}\right)$
+			\item c.i. $\left[4.46, 4.96\right]$ at $95\%$
+			\item $\text{p-value} < 2.2 \times 10^{-16}$
+		\end{itemize}
+	\end{exampleblock}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Multilinear model}
+	Let's see the yearly change of population (\%) in France with respect to all other variables
 	\begin{figure}
 		\includegraphics[width=.75\textwidth]{france.png}
 	\end{figure}
+\end{frame}
+
+\begin{frame}[plain] % The optional argument 'plain' hides the headline and footline
+	\begin{center}
+		{\Huge Thanks for the attention}
+		
+		\bigskip\bigskip % Vertical whitespace
+		
+		{\LARGE References:}
+		
+		\bigskip
+		\small
+
+		\url{https://www.kaggle.com/datasets/nguyenthicamlai/population-2022}
+
+	\end{center}
 \end{frame}
 
 % \section{Text Examples} % Sections are added in order to organize your presentation into discrete blocks, all sections and subsections are automatically output to the table of contents as an overview of the talk but NOT output in the presentation as separate slides
@@ -376,22 +400,6 @@
 % 	\smallskip % Vertical whitespace
 	
 % 	You can also use the \texttt{theorem}, \texttt{lemma}, \texttt{proof} and \texttt{corollary} environments.
-% \end{frame}
-
-% %------------------------------------------------
-
-% \begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
-% 	\frametitle{Verbatim}
-	
-% 	\begin{example}[Theorem Slide Code]
-% 		\begin{verbatim}
-% 			\begin{frame}
-% 				\frametitle{Theorem}
-% 				\begin{theorem}[Mass--energy equivalence]
-% 					$E = mc^2$
-% 				\end{theorem}
-% 		\end{frame}\end{verbatim} % Must be on the same line
-% 	\end{example}
 % \end{frame}
 
 % %------------------------------------------------
