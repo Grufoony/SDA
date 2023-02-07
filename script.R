@@ -90,23 +90,3 @@ france <- df[df$Country == "France", ]
 result <- lm(data = france, Yearly.Change ~ Population + Migrants.net.
     + FertilityRate + MedianAge + UrbanPopulation)
 summary(result)
-
-
-###############################################################################
-###############################################################################
-#other things to try
-
-corYearAge <- cor(filter[, "Year"], filter[, "MedianAge"])
-corFertilityYear <- cor(filter[, "FertilityRate"], filter[, "Year"])
-corAgeFertility <- cor(filter[, "MedianAge"], filter[, "FertilityRate"])
-print(c(corYearAge, corFertilityYear, corAgeFertility))
-
-
-# plots are not that good
-
-ggplot(data = filter, aes(x = Migrants.net., y = Yearly.Change)) + geom_point() + geom_smooth(method = "lm")
-ggplot(data = filter, aes(x = Migrants.net., y = FertilityRate)) + geom_point() + geom_smooth(method = "lm")
-ggplot(data = filter, aes(x = Migrants.net., y = MedianAge)) + geom_point() + geom_smooth(method = "lm")
-ggplot(data = filter, aes(x = Migrants.net., y = UrbanPopulation)) + geom_point() + geom_smooth(method = "lm")
-
-ggplot(data = filter, aes(x = MedianAge, y = exp_FertilityRate)) + geom_point() + geom_smooth(method = "lm")
