@@ -15,6 +15,11 @@ usa <- df[df$Country == "United States", ]
 
 model <- lm(Population ~ Year, data = usa)
 summary(model)
+plot(fitted(model), resid(model))
+abline(0, 0)
+qqnorm(resid(model), main = "Normal qq-plot (USA)",
+    ylab = "Empirical Quantiles", xlab = "Theoretical Quantiles")
+qqline(resid(model), col = "red", lty = 4, lwd = 2)
 
 # Pearson's product-moment correlation
 cor.test(usa$Population, usa$Year)
@@ -30,8 +35,23 @@ ggsave("./img/usa.png")
 pak <- df[df$Country == "Pakistan", ]
 pak[, "log_Population"] <- log(pak[, "Population"] + 1)
 
+# non modified
+model <- lm(Population ~ Year, data = pak)
+summary(model)
+plot(fitted(model), resid(model))
+abline(0, 0)
+qqnorm(resid(model), main = "Normal qq-plot (Pakistan)",
+    ylab = "Empirical Quantiles", xlab = "Theoretical Quantiles")
+qqline(resid(model), col = "red", lty = 4, lwd = 2)
+# logaritmic transformation
 model <- lm(log_Population ~ Year, data = pak)
 summary(model)
+plot(fitted(model), resid(model))
+abline(0, 0)
+qqnorm(resid(model), main = "Normal qq-plot (Pakistan)",
+    ylab = "Empirical Quantiles", xlab = "Theoretical Quantiles")
+qqline(resid(model), col = "red", lty = 4, lwd = 2)
+
 # Pearson's product-moment correlation
 cor.test(pak$Population, pak$Year)
 cor.test(pak$log_Population, pak$Year)
