@@ -53,7 +53,7 @@
 %	TITLE SLIDE
 %----------------------------------------------------------------------------------------
 
-\begin{frame}
+\begin{frame}[noframenumbering]
 	\titlepage % Output the title slide, automatically created using the text entered in the PRESENTATION INFORMATION block above
 \end{frame}
 
@@ -183,7 +183,7 @@
 	\end{figure}
 \end{frame}
 
-\begin{frame}[plain] % The optional argument 'plain' hides the headline and footline
+\begin{frame}[plain, noframenumbering] % The optional argument 'plain' hides the headline and footline
 	\begin{center}
 		{\Huge Thanks for the attention}
 		
@@ -197,6 +197,29 @@
 		\url{https://www.kaggle.com/datasets/nguyenthicamlai/population-2022}
 
 	\end{center}
+\end{frame}
+
+\begin{frame}[plain, noframenumbering]
+	
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{USA analysis - residuals}
+	\begin{figure}
+		\includegraphics[width=.45\textwidth]{res_usa.png}
+		\includegraphics[width=.45\textwidth]{qq_usa.png}
+	\end{figure}
+\end{frame}
+\begin{frame}[noframenumbering]
+	\frametitle{Pakistan analysis - residuals}
+	\begin{figure}
+		\includegraphics[width=.4\textwidth]{res_pak.png}
+		\includegraphics[width=.4\textwidth]{qq_pak.png}
+	\end{figure}
+	\begin{figure}
+		\includegraphics[width=.4\textwidth]{res_pak_log.png}
+		\includegraphics[width=.4\textwidth]{qq_pak_log.png}
+	\end{figure}
 \end{frame}
 
 \end{document} 
