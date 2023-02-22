@@ -80,7 +80,7 @@ oceania <- oceania %>% group_by(Year) %>% summarise(sum = sum(Population))
 oceania[, "sum"] <- log(oceania[, "sum"] + 1)
 
 ggplot(data = oceania, aes(x = Year, y = sum)) +
-    geom_point() +
+    geom_point(color = "blue") +
     geom_point(data = asia, color = "red") +
     labs(x = "Time (y)", y = "log(Population) (a.u.)")
 ggsave("./img/asia_oceania.png")
